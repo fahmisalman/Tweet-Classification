@@ -21,6 +21,7 @@ def prior_probability(y, y_list):
 
 def likelihood_probability(x, y, x_list, y_list):
     l = []
+    print(len(x_list))
     for i in range(len(x_list)):
         a = []
         for j in range(len(y_list)):
@@ -31,6 +32,7 @@ def likelihood_probability(x, y, x_list, y_list):
             temp += 1
             a.append(temp)
         l.append(a)
+        print(i)
     total_l = [0] * len(y_list)
     for i in range(len(l)):
         for j in range(len(l[i])):

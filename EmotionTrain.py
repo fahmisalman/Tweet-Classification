@@ -22,10 +22,16 @@ def load_data():
     return x, y
 
 
-def save_data(location, obj):
+def save_data1(location, obj):
     with open(location, 'w') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(obj)
+
+
+def save_data2(location, obj):
+    with open(location, 'w') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows([obj])
 
 
 if __name__ == '__main__':
@@ -48,10 +54,10 @@ if __name__ == '__main__':
     # Training
     prior, likelihood, label_list, words_list = nb.training(x_train, y_train)
 
-    save_data('prior.csv', prior)
-    save_data('likelihood.csv', likelihood)
-    save_data('label.csv', label_list)
-    save_data('words.csv', words_list)
+    save_data2('prior_emotion.csv', prior)
+    save_data1('likelihood_emotion.csv', likelihood)
+    save_data2('label_emotion.csv', label_list)
+    save_data2('words_emotion.csv', words_list)
 
     # Testing
     # result = []
