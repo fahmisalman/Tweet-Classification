@@ -23,13 +23,13 @@ def load_data():
 
 
 def save_data1(location, obj):
-    with open(location, 'w') as csvfile:
+    with open('Model/Emotion/%s' % location, 'w') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(obj)
 
 
 def save_data2(location, obj):
-    with open(location, 'w') as csvfile:
+    with open('Model/Emotion/%s' % location, 'w') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows([obj])
 

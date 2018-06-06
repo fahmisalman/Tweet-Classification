@@ -1,6 +1,5 @@
 from nltk.stem.wordnet import WordNetLemmatizer
 import re
-# from nltk.stem.porter import *
 
 
 def caseFolding(sentence):
@@ -22,7 +21,7 @@ def lemmatization(token):
 
 
 def stopwordRemoval(token):
-    stopword = [line.rstrip('\n\r') for line in open('stopwords_en.txt')]
+    stopword = [line.rstrip('\n\r') for line in open('Model/stopwords_en.txt')]
     temp = []
     for i in range(len(token)):
         if token[i] not in stopword:
