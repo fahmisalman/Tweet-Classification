@@ -1,12 +1,6 @@
 import math
 
 
-label_list = []
-words_list = []
-prior = []
-likelihood = []
-
-
 def prior_probability(y, y_list):
     p = [0] * len(y_list)
     for i in range(len(y_list)):
