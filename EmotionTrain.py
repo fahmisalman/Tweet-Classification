@@ -14,7 +14,7 @@ def preprocessing(sentence):
 def load_data():
     x = []
     y = []
-    with open('data_emotion.csv') as csvfile:
+    with open('Dataset/data_emotion.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             x.append(row[0])
@@ -36,10 +36,8 @@ def save_data2(location, obj):
 
 if __name__ == '__main__':
 
-    # Load Data
     x_train, y_train = load_data()
 
-    # Preprocessing Data
     for i in range(len(x_train)):
         x_train[i] = preprocessing(x_train[i])
 
@@ -51,24 +49,9 @@ if __name__ == '__main__':
         else:
             i += 1
 
-    # Training
     prior, likelihood, label_list, words_list = nb.training(x_train, y_train)
 
     save_data2('prior_emotion.csv', prior)
     save_data1('likelihood_emotion.csv', likelihood)
     save_data2('label_emotion.csv', label_list)
     save_data2('words_emotion.csv', words_list)
-
-    # Testing
-    # result = []
-    # for i in range(len(x_train)):
-    #     result.append(nb.testing(x_train[i], label_list, words_list, prior, likelihood))
-    #
-    # # Accuracy Testing
-    # correct = 0
-    # for i in range(len(y_train)):
-    #     if result[i] == y_train[i]:
-    #         correct += 1
-    #
-    # print(correct)
-    # print(correct/len(y_train))

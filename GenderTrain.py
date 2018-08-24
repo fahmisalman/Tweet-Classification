@@ -15,7 +15,7 @@ def preprocessing(sentence):
 def load_data():
     x = []
     y = []
-    with open('data_gender.csv') as csvfile:
+    with open('Dataset/data_gender.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             y.append(row['gender'])
@@ -37,10 +37,8 @@ def save_data2(location, obj):
 
 if __name__ == '__main__':
 
-    # Load Data
     x_train, y_train = load_data()
 
-    # Preprocessing Data
     for i in range(len(x_train)):
         x_train[i] = tc.url_removal(tc.hashtag_removal(tc.at_removal(x_train[i])))
         x_train[i] = preprocessing(x_train[i])
@@ -53,24 +51,9 @@ if __name__ == '__main__':
         else:
             i += 1
 
-    # Training
     prior, likelihood, label_list, words_list = nb.training(x_train, y_train)
 
     save_data2('prior_gender.csv', prior)
     save_data1('likelihood_gender.csv', likelihood)
     save_data2('label_gender.csv', label_list)
     save_data2('words_gender.csv', words_list)
-
-    # Testing
-    # result = []
-    # for i in range(len(x_train)):
-    #     result.append(nb.testing(x_train[i], label_list, words_list, prior, likelihood))
-    #
-    # # Accuracy Testing
-    # correct = 0
-    # for i in range(len(y_train)):
-    #     if result[i] == y_train[i]:
-    #         correct += 1
-    #
-    # print(correct)
-    # print(correct/len(y_train))
